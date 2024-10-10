@@ -1,8 +1,6 @@
 class Storage {
   static setTeams(teams) {
-    if (!localStorage.getItem('teams')) {
-      localStorage.setItem('teams', JSON.stringify(teams));
-    }
+    localStorage.setItem('teams', JSON.stringify(teams));
   }
 
   static getTeams() {

@@ -7,7 +7,6 @@ class HomePage {
   }
 
   render() {
-    console.log(this.teams);
     this.updateTable();
     this.updateTeamsQuantity();
   }
@@ -16,7 +15,6 @@ class HomePage {
     const $tableBody = document.getElementById('table-home');
 
     this.teams.forEach((team) => {
-      console.log(team);
       const newRow = this.renderTeam(team);
       $tableBody.appendChild(newRow);
     });
@@ -24,6 +22,8 @@ class HomePage {
 
   renderTeam(team) {
     const $tr = document.createElement('tr');
+    $tr.id = team.id;
+    $tr.classList = 'team';
 
     // Crest
     const $tdCrest = document.createElement('td');
