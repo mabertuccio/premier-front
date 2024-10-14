@@ -4,14 +4,20 @@ class API {
     this.BASE_URL = `http://localhost:${this.PORT}`;
   }
 
-  async handleRequest(method, endpoint) {
+  async handleRequest(method, endpoint, body = null) {
     try {
-      const response = await fetch(`${this.BASE_URL}/${endpoint}`, {
+      const options = {
         method: method,
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      };
+
+      if (body) {
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(`${this.BASE_URL}/${endpoint}`, options);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);

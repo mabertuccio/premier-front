@@ -1,3 +1,4 @@
+import { handleActionClick } from './handleActions.js';
 import Storage from './storage.js';
 
 class TeamPage {
@@ -108,8 +109,40 @@ class TeamPage {
 
     $countryRow.appendChild($countryKey);
     $countryRow.appendChild($countryValue);
-
     $tableTeamBody.appendChild($countryRow);
+
+    // Actions Row
+    const $actionsRow = document.createElement('tr');
+
+    const $actionsKey = document.createElement('td');
+    $actionsKey.innerText = 'Actions';
+
+    const $actionsValue = document.createElement('td');
+
+    const buttons = ['Edit', 'Delete'];
+    const buttonsColors = {
+      edit: 'warning',
+      delete: 'danger',
+    };
+
+    buttons.forEach((action) => {
+      buttonsColors[action];
+      const $button = document.createElement('button');
+      $button.type = 'button';
+      $button.value = action;
+      $button.dataset.id = team.id;
+      $button.classList = `btn btn-${
+        buttonsColors[action.toLocaleLowerCase()]
+      }`;
+      $button.innerText = action;
+      $button.addEventListener('click', handleActionClick);
+      $actionsValue.appendChild($button);
+    });
+
+    $actionsRow.appendChild($actionsKey);
+    $actionsRow.appendChild($actionsValue);
+
+    $tableTeamBody.appendChild($actionsRow);
   }
 }
 
